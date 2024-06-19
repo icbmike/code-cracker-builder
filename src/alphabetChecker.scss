@@ -1,0 +1,12 @@
+.alphabetCheck {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    margin-right: 10px;
+
+    &.is-letterUsed {
+        text-decoration: line-through;
+        text-decoration-thickness: 4px;
+    }
+}

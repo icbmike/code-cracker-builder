@@ -5,6 +5,7 @@ import { range } from "./range";
 import { Crossword } from "./Crossword";
 import { Code } from "./Code";
 import { AlphabetChar, Cell } from "./model";
+import { AlphabetChecker } from "./AlphabetChecker";
 
 const initialCells = range(13).map(x => range(13).map(y => ({}) as Cell))
 
@@ -35,10 +36,12 @@ export const App = () => {
 
   return (
     <div style={{ padding: '50px' }}>
-      <div style={{ display: 'flex', marginBottom: '50px' }}>
+      <div style={{ display: 'flex', marginBottom: '20px' }}>
         <Crossword cells={cells} code={code} onSetLetter={onSetLetter} areLettersVisible={areLettersVisible} />
         <Code code={code} areLettersVisible={areLettersVisible} />
       </div>
+
+      <AlphabetChecker code={code} areLettersVisible={areLettersVisible} />
       <button onClick={() => setAreLettersVisible(!areLettersVisible)}>Toggle filled letters</button>
     </div>
   );
