@@ -5,7 +5,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ESNext",
-    "jsx": "react"
+    "jsx": "react",
+    "sourceMap": true
   },
   "files": [
     "src/index.tsx"
