@@ -3,3 +3,18 @@ button {
     font-size: 1.2em;
     cursor: pointer;
 }
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.icon {
+    height: 50px;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+}

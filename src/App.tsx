@@ -9,6 +9,7 @@ import { AlphabetChecker } from "./AlphabetChecker";
 import { exportPuzzle, importPuzzle } from './serialization';
 
 import "./app.scss";
+import icon from './icon.png';
 
 const initialCells = range(13).map(x => range(13).map(y => ({}) as Cell))
 
@@ -43,6 +44,12 @@ export const App = () => {
 
   return (
     <div style={{ padding: '50px' }}>
+      
+      <header className="header">
+        <img className="icon" src={icon} alt="Code Cracker Builder Icon"/>
+        <h1 className="title">Mike's Code Cracker Builder</h1>
+      </header>
+      
       <div style={{ display: 'flex', marginBottom: '20px' }}>
         <Crossword cells={cells} code={code} onSetLetter={onSetLetter} areLettersVisible={areLettersVisible} />
         <Code code={code} areLettersVisible={areLettersVisible} />

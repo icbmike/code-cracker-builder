@@ -12,7 +12,7 @@ const stylesHandler = 'style-loader';
 const config = {
     entry: './src/index.tsx',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'docs'),
     },
     devServer: {
         open: true,
@@ -40,7 +40,7 @@ const config = {
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+                type: 'asset/resource',
             },
 
             // Add your rules for custom modules here
