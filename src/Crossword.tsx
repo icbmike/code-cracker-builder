@@ -50,9 +50,10 @@ interface CrosswordProps {
   onSetLetter: (position: [number, number], letter: AlphabetChar) => void,
   code: Record<number, AlphabetChar | undefined>;
   areLettersVisible: boolean;
+  startingLetters: string[];
 }
 
-export const Crossword = ({ cells, onSetLetter, code, areLettersVisible }: CrosswordProps) => {
+export const Crossword = ({ cells, onSetLetter, code, areLettersVisible, startingLetters }: CrosswordProps) => {
   const inverseCode: InverseCode = Object.entries(code)
     .filter(([number, char]) => !!char)
     .reduce((acc, [number, char]) => ({ ...acc, [char]: parseInt(number) + 1 }), {})
@@ -61,7 +62,7 @@ export const Crossword = ({ cells, onSetLetter, code, areLettersVisible }: Cross
     <div className="crossword">
       {cells.map((row, i) => (
         <div key={i}>
-          {row.map((cell, j) => <CellInput areLettersVisible={areLettersVisible} inverseCode={inverseCode} onSetLetter={onSetLetter} cell={cell} key={j} position={[i, j]} />)}
+          {row.map((cell, j) => <CellInput areLettersVisible={areLettersVisible || startingLetters.includes(cell.letter)} inverseCode={inverseCode} onSetLetter={onSetLetter} cell={cell} key={j} position={[i, j]} />)}
         </div>
       ))}
     </div>

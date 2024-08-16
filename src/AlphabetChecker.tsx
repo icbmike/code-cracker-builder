@@ -12,7 +12,7 @@ export const AlphabetChecker = ({ code, areLettersVisible }: AlphabetCheckerProp
   const usedLetters = Object.values(code);
   const allAlphabetChars = 'abcdefghijklmnopqrstuvwxyz'.split('').filter(isAlphabetChar);
 
-  return <div style={{ marginBottom: '50px' }}>
+  return <div style={{ marginBottom: '25px' }}>
     {
       allAlphabetChars.map(l => {
 

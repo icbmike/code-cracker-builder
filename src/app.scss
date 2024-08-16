@@ -4,17 +4,52 @@ button {
     cursor: pointer;
 }
 
+.app {
+    padding: 50px;
+
+    @media print {
+        padding: 0;
+    }
+}
+
 .header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     gap: 12px;
+
+    @media print {
+        display: none;
+    }
 }
 
 .icon {
     height: 50px;
 }
 
-.title {
+body {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.controls {
+    display: flex; 
+    gap: 8px; 
+    align-items: center;
+
+    @media print {
+        display: none;
+    }
+}
+
+.startingLetters {
+    &-label {
+        font-size: 1.2em;
+    }
+
+    &-input {
+        font-size: 1.2em;
+        height: 50px;
+        padding: 12px;
+        text-transform: uppercase;
+    }
 }

@@ -4,7 +4,7 @@ import { range } from "./range";
 
 import { Crossword } from "./Crossword";
 import { Code } from "./Code";
-import { AlphabetChar, Cell } from "./model";
+import { AlphabetChar, Cell, isAlphabetChar } from "./model";
 import { AlphabetChecker } from "./AlphabetChecker";
 import { exportPuzzle, importPuzzle } from './serialization';
 
@@ -17,6 +17,7 @@ export const App = () => {
   const [cells, setCells] = useState(initialCells);
   
   const [areLettersVisible, setAreLettersVisible] = useState(true);
+  const [startingLetters, setStartingLetters] = useState<string[]>([]);
 
   const onSetLetter = (position: [number, number], char: AlphabetChar | undefined) => {
     const [x, y] = position;
@@ -28,6 +29,14 @@ export const App = () => {
     const cells = await importPuzzle();
 
     setCells(cells);
+  }
+
+  const onStartingLettersChange = (newStartingLetters: string) => {
+    const newChars = newStartingLetters.split('');
+    if(newChars.every(l => isAlphabetChar(l)))
+    {
+      setStartingLetters(newChars);
+    }
   }
 
   let letters: AlphabetChar[] = [];
@@ -43,24 +52,26 @@ export const App = () => {
   const code = range(26).reduce((acc, next) => ({ ...acc, [next]: letters[next] }), {})
 
   return (
-    <div style={{ padding: '50px' }}>
-      
+    <div className="app">
+  
       <header className="header">
         <img className="icon" src={icon} alt="Code Cracker Builder Icon"/>
         <h1 className="title">Mike's Code Cracker Builder</h1>
       </header>
       
       <div style={{ display: 'flex', marginBottom: '20px' }}>
-        <Crossword cells={cells} code={code} onSetLetter={onSetLetter} areLettersVisible={areLettersVisible} />
-        <Code code={code} areLettersVisible={areLettersVisible} />
+        <Crossword cells={cells} code={code} onSetLetter={onSetLetter} areLettersVisible={areLettersVisible} startingLetters={startingLetters}/>
+        <Code code={code} areLettersVisible={areLettersVisible} startingLetters={startingLetters} />
       </div>
 
       <AlphabetChecker code={code} areLettersVisible={areLettersVisible} />
       
-      <div style={{ display: 'flex', gap: '8px' }}>
+      <div className="controls">
         <button onClick={() => setAreLettersVisible(!areLettersVisible)}>Toggle filled letters</button>
         <button onClick={() => exportPuzzle(cells)}>Export</button>
         <button onClick={onImport}>Import</button>
+        <label className="startingLetters-label">Starting letters:</label>
+        <input className="startingLetters-input" type="text" pattern="[a-zA-Z]*" onChange={(e) => onStartingLettersChange(e.target.value)} value={startingLetters.join('')}/>
       </div>
     </div>
   );
